@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/index.css'%}">
+</head>
+<body>
+    {% include 'includes/header.html' %}
+
+    {% load static %}
+    <script src="{% static 'script/search.js' %}"></script>
+
+
+    <section>
+        <div class="map" style="margin: 100px 0;">
+
+            <div class="main-site">
+                <nav class="main-site-nav">
+                    <span>
+                        <a href="{% url 'index' %}">Главная</a>
+                        <p>→ Блог</p>
+                    </span>
+                </nav>
+        
+                <div class="products-header">
+                    <h1>БЛОГ</h1>
+                </div>
+            </div>
+
+            <h1>Запрашиваемая страница не найдена!</h1>
+            
+        </div>
+    </section>
+
+    {% include 'includes/footer.html' %}
+</body>
+</html>

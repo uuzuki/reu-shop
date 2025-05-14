@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://shop.rea.ru/image/catalog/gerb_on_black.png" type="image/png">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/index.css'%}">
+    <title>Главная</title>
+</head>
+<body>
+
+    <div class="moving-bg"></div>
+    {% include 'includes/header.html' %}
+    
+    <main>
+        <div class="hero-container">
+            <div class="split-title">
+                <div class="title-part">РОССИЙСКИЙ</div>
+                <div class="title-part reu-spark">REU SHOP</div>
+            </div>
+            <div class="split-subtitle">
+                <div class="subtitle-part">ЭКОНОМИЧЕСКИЙ</div>
+                <div class="subtitle-part">ИМ. Г.В.ПЛЕХАНОВА</div>
+            </div>
+            <p class="hero-description">Сувенирная продукция Российского экономического университета имени Г.В. Плеханова</p
+        </div>
+    </main>
+
+    {% load static %}
+    <script src="{% static 'script/header.js' %}"></script>
+    <script src="{% static 'script/search.js' %}"></script>
+
+    <div class="site-main">
+        <section class="banners">
+                <a style="height: 510px;" href="">
+                    {% load static %}
+                    <img style="height: 510px;" src="{% static 'image/card-4_back.png'%}" alt="">
+                </a>
+                <a style="height: 510px;" href="">
+                    {% load static %}
+                    <img style="height: 510px;" src="{% static 'image/card-5_back.png'%}" alt="">
+                </a>
+        </section>
+
+        <section class="banners">
+            <a href="">
+                {% load static %}
+                <img src="{% static 'image/card-1_back.png'%}" alt="">
+                <a href="{% url 'category_detail' slug='tshirts' %}">
+                    {% load static %}
+                    <img src="{% static 'image/card-2_back.png'%}" alt=""> 
+                </a>
+                <a href="">
+                    {% load static %}
+                    <img src="{% static 'image/card-3_back.png'%}" alt="">
+                </a>
+            </a>
+        </section>
+    </div>
+
+    {% load static %}
+
+    <!-- Новинки -->
+    <section class="content-slider-category-slider">
+        <div class="content-slider_wrapper">
+            <div class="content-slider_header">
+                <a href="{% url 'category_detail' slug='new' %}"><h2>НОВИНКИ</h2></a>
+            </div>
+            <div class="content-slider-carousel-wrapper" data-carousel="1">
+                <button class="carousel-button prev">←</button>
+                <div class="slick-track">
+                    <div class="product-container" id="productContainer-1">
+                        {% for product in new %}
+                        <div class="product-card">
+                            <a href="{% url 'product' id=product.id %}">
+                                <img src="{{ product.img_1 }}" alt="{{ product.name }}">
+                                <h3>{{ product.name }}</h3>
+                                <p>{{ product.price }} ₽</p>
+                            </a>
+                        </div>
+                        {% empty %}
+                        <p>Товары в этой категории отсутствуют.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button class="carousel-button next">→</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футболки -->
+    <section class="content-slider-category-slider">
+        <div class="content-slider_wrapper">
+            <div class="content-slider_header">
+                <a href="{% url 'category_detail' slug='tshirts' %}"><h2>ФУТБОЛКИ</h2></a>
+            </div>
+            <div class="content-slider-carousel-wrapper" data-carousel="2">
+                <button class="carousel-button prev">←</button>
+                <div class="slick-track">
+                    <div class="product-container" id="productContainer">
+                        {% for product in tshirts %}
+                        <div class="product-card">
+                            <a href="{% url 'product' id=product.id %}">
+                                <img src="{{ product.img_1 }}" alt="{{ product.name }}">
+                                <h3>{{ product.name }}</h3>
+                            </a>
+                        </div>
+                        {% empty %}
+                        <p>Товары в этой категории отсутствуют.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button class="carousel-button next">→</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Свитшоты -->
+    <section class="content-slider-category-slider">
+        <div class="content-slider_wrapper">
+            <div class="content-slider_header">
+                <a href="{% url 'category_detail' slug='sweatshirts' %}"><h2>СВИТШОТЫ</h2></a>
+            </div>
+            <div class="content-slider-carousel-wrapper" data-carousel="4">
+                <button class="carousel-button prev">←</button>
+                <div class="slick-track">
+                    <div class="product-container" id="productContainer">
+                        {% for product in sweatshirts %}
+                        <div class="product-card">
+                            <a href="{% url 'product' id=product.id %}">
+                                <img src="{{ product.img_1 }}" alt="{{ product.name }}">
+                                <h3>{{ product.name }}</h3>
+                            </a>
+                        </div>
+                        {% empty %}
+                        <p>Товары в этой категории отсутствуют.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button class="carousel-button next">→</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Толстовки -->
+    <section class="content-slider-category-slider">
+        <div class="content-slider_wrapper">
+            <div class="content-slider_header">
+                <a href="{% url 'category_detail' slug='jeans' %}"><h2>ДЖИНСЫ</h2></a>
+            </div>
+            <div class="content-slider-carousel-wrapper" data-carousel="4">
+                <button class="carousel-button prev">←</button>
+                <div class="slick-track">
+                    <div class="product-container" id="productContainer">
+                        {% for product in jeans %}
+                        <div class="product-card">
+                            <a href="{% url 'product' id=product.id %}">
+                                <img src="{{ product.img_1 }}" alt="{{ product.name }}">
+                                <h3>{{ product.name }}</h3>
+                            </a>
+                        </div>
+                        {% empty %}
+                        <p>Товары в этой категории отсутствуют.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button class="carousel-button next">→</button>
+            </div>
+        </div>
+    </section>
+
+{% load static %}
+<script src="{% static 'script/slick-list.js' %}"></script>
+
+<div class="full-row-pleh">
+    <div class="left-image col-sm-7">
+        
+    </div>
+    <div class="right-descs col-sm-5">
+        <div class="pleh-left-btm">
+            <div class="hr-vert"></div>
+            <img src="https://shop.rea.ru/image/templates/gerb.png" alt="">
+            <div class="hr-vert"></div>
+        </div>
+
+        <div class="pleh-title">
+            Российский<br>экономический<br>университет<br>имени Г.В. Плеханова<br>
+        </div>
+
+        <div class="pleh-under-title">			
+            <img class="globus" src="https://shop.rea.ru/image/templates/icons/globus.png">			
+            <a href="https://www.rea.ru/">www.rea.ru
+                <img class="arrow_next" src="https://shop.rea.ru/image/templates/icons/arrow_next.png">
+            </a>
+        </div>
+    </div>
+</div>
+
+    {% include 'includes/footer.html' %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainElement = document.querySelector('main');
+            
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.pageYOffset;
+                mainElement.style.backgroundPosition = 'center ' + (-scrollPosition * 0.5) + 'px';
+            });
+        });
+    </script>
+</body>
+</html>

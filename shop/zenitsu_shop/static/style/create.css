@@ -1,0 +1,257 @@
+/* style/create.css */
+.checkout-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+}
+
+.checkout-title {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.cart-count {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.order-info {
+    margin-bottom: 40px;
+}
+
+.order-info h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-top: 1px solid #e1e1e1;
+}
+
+.item-name {
+    font-weight: 500;
+}
+
+.item-price {
+    font-weight: 500;
+}
+
+.cart-total {
+    text-align: right;
+    padding: 20px 0;
+    border-top: 1px solid #e1e1e1;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.pay {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.order-form {
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 4px;
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.personal-info {
+    max-width: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.order-form p {
+    margin-bottom: 20px;
+    width: calc(50% - 15px);
+    position: relative;
+}
+
+.order-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: rgba(21, 9, 0, .95);
+}
+
+.order-form label::after {
+    content: "";
+}
+
+.order-form label:has(+ input[required])::after,
+.order-form label:has(+ select[required])::after {
+    content: " *";
+    color: red;
+    position: absolute;
+    top: 0;
+    right: -10px;
+}
+
+.order-form input,
+.order-form textarea,
+.order-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.order-form ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    margin: 0;
+}
+
+.order-form li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.order-form input[type="radio"] {
+    display: none;
+}
+
+.order-form input[type="radio"] + label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    position: relative;
+    padding-left: 30px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 0;
+    font-weight: normal;
+    color: #333;
+}
+
+.order-form input[type="radio"] + label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #999;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.order-form input[type="radio"]:checked + label::before {
+    border-color: #000;
+}
+
+.order-form input[type="radio"]:checked + label::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 7px;
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    border-radius: 50%;
+}
+
+.order-form input[type="submit"] {
+    background: #000;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+    font-weight: 500;
+    width: auto;
+}
+
+.order-form input[type="submit"]:hover {
+    background: #333;
+}
+
+.error-messages {
+    margin-bottom: 15px;
+    color: red;
+}
+
+.error-messages ul {
+    list-style: none;
+    padding: 0;
+}
+
+.error-messages li {
+    margin-bottom: 5px;
+}
+
+.col-md-2 {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.col-md-2 img {
+    width: 100px;
+}
+
+.delivery-section {
+    max-width: 1200px;
+    margin-top: 20px;
+}
+
+.delivery-section h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.notice-box {
+    background-color: #e6f7ff;
+    border: 1px solid #b3e0ff;
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.notice-box strong {
+    font-weight: bold;
+}
+
+.delivery-options input[type="radio"] {
+    display: block !important; /* Убедитесь, что элементы видны */
+    visibility: visible !important;
+    opacity: 1 !important;
+}

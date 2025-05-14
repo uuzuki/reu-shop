@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/list-card.css' %}">
+    <title>SALE</title>
+</head>
+<body>
+    {% include 'includes/header.html' %}
+
+    <main class="main-site">
+        <div class="main-site-header">
+            <nav class="main-site-nav">
+                <span>
+                    <a href="{% url 'index' %}">Главная</a>
+                    <p>→ Новинки</p>
+                </span>
+            </nav>
+
+            <div class="products-header">
+                <h1>НОВИНКИ</h1>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="modal" id="filterModal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <form method="GET" action="{% url 'list_card' %}">
+                                <div class="list-group mb-3">
+                                    <h5>Категории</h5>
+                                    <ul>
+                                        <li>
+                                            <a href="{% url 'list_card' %}" class="list-group-item list-group-item-action {% if not current_category_id %}active{% endif %}">
+                                                Все товары
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    {% for category in categories %}
+                                        <ul>
+                                            <li><a href="?category={{ category.id }}"
+                                                class="list-group-item list-group-item-action {% if current_category_id == category.id %}active{% endif %}">
+                                                 {{ category.name }}
+                                             </a></li>
+                                        </ul>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="list-group mb-3">
+                                    <h5>Размеры</h5>
+                                    {% for size in sizes %}
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="sizes" 
+                                                   value="{{ size.id }}" id="size_{{ size.id }}"
+                                                   {% if size.id|stringformat:"s" in request.GET.sizes %}checked{% endif %}>
+                                            <label class="form-check-label" for="size_{{ size.id }}">
+                                                {{ size.name }}
+                                            </label>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="mb-3">
+                                    <h5>Цена</h5>
+                                    <div class="form-group">
+                                        <label for="price_min">От:</label>
+                                        <input type="number" name="price_min" id="price_min" class="form-control"
+                                               value="{{ request.GET.price_min }}" placeholder="Мин. цена">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price_max">До:</label>
+                                        <input type="number" name="price_max" id="price_max" class="form-control"
+                                               value="{{ request.GET.price_max }}" placeholder="Макс. цена">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Применить</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Список товаров -->
+                    <div class="col-md-12">
+
+                        <div class="select">
+                            <div class="col-md-12 mb-3">
+                                <button class="btn btn-secondary" id="openFilterModal">Фильтры</button>
+                            </div>
+
+                            <div class="sort">
+                                <div class="sort-container" id="sortContainer">
+                                    <button class="sort-button" id="sortButton"> 
+                                        {% if request.GET.sort == 'newest' or not request.GET.sort %}По новизне{% endif %}
+                                        {% if request.GET.sort == 'popular' %}По популярности{% endif %}
+                                        {% if request.GET.sort == 'price_asc' %}Цены: по возрастанию{% endif %}
+                                        {% if request.GET.sort == 'price_desc' %}Цены: по убыванию{% endif %}
+                                        {% if request.GET.sort == 'sale' %}SALE{% endif %}
+                                    </button>
+                                    <div class="sort-dropdown">
+                                        <div class="sort-option">
+                                            <a href="?sort=newest{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}" 
+                                               class="{% if request.GET.sort == 'newest' %}active{% endif %}">По новизне</a>
+                                        </div>
+                                        <div class="sort-option">
+                                            <a href="?sort=popular{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}" 
+                                               class="{% if request.GET.sort == 'popular' %}active{% endif %}">По популярности</a>
+                                        </div>
+                                        <div class="sort-option sale">
+                                            <a href="?sort=sale{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}" 
+                                               class="{% if request.GET.sort == 'sale' %}active{% endif %}">SALE</a>
+                                        </div>
+                                        <div class="sort-divider"></div>
+                                        <div class="sort-option">
+                                            Цены: <a href="?sort=price_asc{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}" 
+                                                     class="{% if request.GET.sort == 'price_asc' %}active{% endif %}">по возрастанию</a>
+                                        </div>
+                                        <div class="sort-option">
+                                            Цены: <a href="?sort=price_desc{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}" 
+                                                     class="{% if request.GET.sort == 'price_desc' %}active{% endif %}">по убыванию</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% load static %}
+                                <script src="{% static 'script/sort.js' %}"></script>
+                                <script src="{% static 'script/filter-modal.js' %}"></script>
+                            </div>
+                        </div>
+
+                        <section class="products-list">
+                            {% for product in products %}
+                                <a href="{% url 'product' id=product.id %}">
+                                    <div class="product-card">
+                                        {% if product.discount > 0 %}
+                                            <div class="discount-badge">SALE {{ product.discount }}%</div>
+                                        {% endif %}
+                                        <div class="product-color-tag" style="background-color: #74acdc;">NEW</div>
+                                        <div class="image-container">
+                                            <div class="product-image-after">
+                                                {% load static %}
+                                                <img src="{{ product.img_1 }}" alt="{{ product.name }}">
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-name">{{ product.name }}</div>
+                                            <div class="product-price">{{ product.price|floatformat:"0" }} ₽</div>
+                                        </div> 
+                                    </div>
+                                </a>
+                            {% empty %}
+                                <p>Товары не найдены.</p>
+                            {% endfor %}
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include 'includes/footer.html' %}
+</body>
+</html>

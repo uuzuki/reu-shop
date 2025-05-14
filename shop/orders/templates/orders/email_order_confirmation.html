@@ -1,0 +1,123 @@
+{% load math_filters %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подтверждение заказа</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        a {
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #0b2d4f;
+            color: #ffffff;
+            border-radius: 8px 8px 0 0;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content h2 {
+            font-size: 20px;
+            color: #007bff;
+        }
+        .order-details {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .order-details th, .order-details td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .order-details th {
+            background-color: #f8f8f8;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0b2d4f;
+            color: #ffffff !important;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .button a {
+            color: #ffffff !important;
+            text-decoration: none !important;
+        }
+        .msg-3430625655490869248 .m_-3430625655490869248content h2 {
+            font-size: 20px;
+            color: #285e97;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Спасибо за ваш заказ!</h1>
+        </div>
+        <div class="content">
+            <h2>Детали заказа #{{ order.id }}</h2>
+            <p>Уважаемый(ая) <span style="font-weight: 600;">{{ order.first_name }}</span>,</p>
+            <p>Ваш заказ успешно оформлен. Ниже приведены детали:</p>
+            <table class="order-details">
+                <thead>
+                    <tr>
+                        <th>Товар</th>
+                        <th>Цена</th>
+                        <th>Количество</th>
+                        <th>Итого</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.price }}₽</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.price|multiply:item.quantity }}₽</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p><strong>Доставка:</strong> {{ order.delivery.name }} ({{ delivery_cost }}₽)</p>
+            <p><strong>Способ оплаты:</strong> {{ order.payment.name }}</p>
+            <p><strong>Итоговая стоимость:</strong> {{ total_cost }}₽</p>
+            <a href="{{ return_url }}" class="button" style="color: #ffffff !important; text-decoration: none !important;">Оплатить заказ</a>
+        </div>
+        <div class="footer">
+            <p>Если у вас есть вопросы, свяжитесь с нами: <a href="mailto:support@example.com">support@example.com</a></p>
+            <p>&copy; {{ year }} Reu Shop. Все права защищены.</p>
+        </div>
+    </div>
+</body>
+</html>

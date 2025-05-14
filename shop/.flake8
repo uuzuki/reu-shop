@@ -1,0 +1,66 @@
+[flake8]
+exclude = migrations, venv, __pycache__
+max-line-length = 119
+ignore = E501, W503
+
+# version: '3'
+
+# services:
+#   postgres:
+#     image: postgres:latest
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: postgres
+#       POSTGRES_DB: postgres
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+
+#   telegraf:
+#     image: telegraf:latest
+#     volumes:
+#       - ./telegraf.conf:/etc/telegraf/telegraf.conf
+#     depends_on:
+#       - postgres
+#       - influxdb  # Если используется InfluxDB
+
+#   influxdb:  # Опционально, если нужен вывод в InfluxDB
+#     image: influxdb:latest
+#     environment:
+#       DOCKER_INFLUXDB_INIT_MODE: setup
+#       DOCKER_INFLUXDB_INIT_USERNAME: admin
+#       DOCKER_INFLUXDB_INIT_PASSWORD: admin123
+#       DOCKER_INFLUXDB_INIT_ORG: myorg
+#       DOCKER_INFLUXDB_INIT_BUCKET: telegraf
+#     ports:
+#       - "8086:8086"
+#     volumes:
+#       - influxdb_data:/var/lib/influxdb2
+
+# volumes:
+#   postgres_data:
+#   influxdb_data:
+
+
+# [agent]
+#   interval = "10s"  # Интервал сбора метрик
+#   flush_interval = "30s"
+
+# [[outputs.influxdb]]  # Куда отправлять данные (в данном случае — InfluxDB)
+#   urls = ["http://influxdb:8086"]
+#   database = "telegraf"
+#   skip_database_creation = false
+
+# [[inputs.postgresql]]
+#   address = "host=postgres user=postgres password=postgres dbname=postgres port=5432 sslmode=disable"
+#   # Список баз для мониторинга (можно указать несколько через запятую)
+#   databases = ["postgres"]
+#   # Игнорируемые БД
+#   ignored_databases = ["template0", "template1"]
+#   # Дополнительные запросы для сбора метрик
+#   [[inputs.postgresql.query]]
+#     sql="SELECT * FROM pg_stat_database"
+#     version=901
+#     withdbname=false
+#     tagvalue=""

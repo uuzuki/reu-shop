@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/account.css'%}">
+    <title>Личный кабинет</title>
+</head>
+<body>
+    {% include 'includes/header.html' %}
+
+    <main class="main-site">
+        <div class="main-site-header">
+            <nav class="main-site-nav">
+                <span>
+                    <a href="{% url 'index' %}">Главная</a>
+                    <p>→ Личный кабинет</p>
+                </span>
+            </nav>
+
+            <div class="products-header">
+                <h1>Личный кабинет</h1>
+            </div>
+        </div>
+    </main>
+
+
+    <section class="account">
+        <div class="auth-container">
+            <div class="auth-tabs">
+                <a href="" class="auth-tab active">Вход</a>
+            </div>
+    
+            <form method="post" class="auth-form form-content active" id="login-form">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="id_username">Имя пользователя или Email*</label>
+                    <input type="text" name="username" id="id_username" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_password">Пароль*</label>
+                    <input type="password" name="password" id="id_password" class="form-control" required>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember_me">
+                        <span>Запомнить меня</span>
+                    </label>
+                    <a href="" class="forgot-password">Забыли свой пароль?</a>
+                </div>
+                
+                <button type="submit" class="auth-button">войти</button>
+                
+                <div class="phone-login">
+                    <p>Нет аккаунта? <a href="/signup/">Зарегестрироваться</a></p>
+                </div>
+            </form>
+
+            
+            <!-- Форма регистрации -->
+            <form method="post" action="{% url 'signup' %}" class="auth-form form-content" id="register-form">
+                {% csrf_token %}
+                
+                <h2>Регистрация</h2>
+                
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                <p>{{ field|title }}: {{ error }}</p>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+                <div class="form-group">
+                    <label for="id_username">Имя пользователя*</label>
+                    <input type="text" name="username" id="id_username" class="form-control" required>
+                    <small class="form-text">Обязательное поле. Не более 150 символов. Только буквы, цифры и @/./+/-/_</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_password1">Пароль*</label>
+                    <input type="password" name="password1" id="id_password1" class="form-control" required>
+                    <small class="form-text">
+                        Пароль должен содержать минимум 8 символов, не быть слишком простым и не состоять только из цифр.
+                    </small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_password2">Подтверждение пароля*</label>
+                    <input type="password" name="password2" id="id_password2" class="form-control" required>
+                </div>
+                
+                <button type="submit" class="submit-btn">Зарегистрироваться</button>
+            </form>
+        </div>
+    </section>
+
+
+
+    <footer class="site-footer">
+        <div class="footer-navigation">
+            <div class="menu-footer-navigation-container">
+                <ul class="footer-menu">
+                    <li class="menu-item">
+                        <a href="">Для клиентов</a>
+                        <ul class="sub-menu">
+                            <li class="sub-menu-item">
+                                <a href="">Промокоды и Купоны</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="">Моя учетная запись</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="">Оформить заказ</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="">Политика обработки данных</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="">О нас</a>
+                        <ul class="sub-menu">
+                            <li class="sub-menu-item">
+                                <a href="">О компании</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="">Вакансии</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="">Контакты</a>
+                        <ul class="sub-menu">
+                            <li class="sub-menu-item">
+                                <a href="">+7 (980)186-96-79</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="">E-mail: isip_i.m.grosul@mpt.ru</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="">г. Москва, ул. Нахимовский пр-кт, д.21</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

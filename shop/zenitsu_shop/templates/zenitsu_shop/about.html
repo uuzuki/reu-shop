@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/about.css'%}">
+    <title>О нас</title>
+</head>
+<body>
+    {% include 'includes/header.html' %}
+
+    <div class="container">
+
+        <nav class="main-site-nav">
+            <span>
+                <a href="{% url 'index' %}">Главная</a>
+                <p>→ О магазине</p>
+            </span>
+        </nav>
+
+        <div class="products-header">
+            <h1>О магазине</h1>
+        </div>
+
+        <div class="header-image">
+            <img src="{% static 'image/shapka_reu.jpg'%}" style="max-width: 100%;" alt="">
+        </div>
+
+        <p>Магазин сувенирной корпоративной продукции Российского экономического университета имени Г.В. Плеханова не просто предлагает корпоративную продукцию с символикой вуза.</p>
+
+        <p>Мы создаем и развиваем современный онлайн университет, обеспечивая развитие сообщества, представляя университет и его продукцию под брендом "Плеханов" на национальном и международном уровне.</p>
+
+        <p>Ассортимент магазина постоянно обновляется и расширяется в соответствии с потребностями большинства покупателей.</p>
+
+        <h2>Ассортимент</h2>
+        <ul>
+            <li>Одежда</li>
+            <li>Брелоки</li>
+            <li>Металлические изделия и заказные знаки</li>
+            <li>Чехлы на мобильные телефоны</li>
+            <li>Кружки и термокружки</li>
+            <li>Зонты</li>
+        </ul>
+
+        <p class="highlight">Особое внимание уделяем качеству сервиса и отзывам клиентов в любой точке России.</p>
+
+        <p>Сделайте свои покупки!</p>
+    </div>
+
+    {% include 'includes/footer.html' %}
+</body>
+</html>

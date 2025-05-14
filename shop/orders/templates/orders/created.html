@@ -1,0 +1,12 @@
+<!-- orders/templates/orders/created.html -->
+{% load static %}
+{% include 'includes/header.html' %}
+
+{% block content %}
+<div class="order-success">
+    <h1>Спасибо за покупку!</h1>
+    <p>Ваш заказ в обработке. Номер вашего заказа: <strong>№{{ order.id }}</strong>.</p>
+    <a href="{% url 'zenitsu_shop:index' %}">Вернуться на главную</a>
+</div>
+{% endblock %}
+{% include 'includes/footer.html' %}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/account.css'%}">
+    <title>Личный кабинет</title>
+</head>
+<body>
+    {% include 'includes/header.html' %}
+
+    <main class="main-site">
+        <div class="main-site-header">
+            <nav class="main-site-nav">
+                <span>
+                    <a href="{% url 'index' %}">Главная</a>
+                    <p>→ Личный кабинет</p>
+                </span>
+            </nav>
+
+            <div class="products-header">
+                <h1>Личный кабинет</h1>
+            </div>
+        </div>
+    </main>
+
+    <!-- <div>
+      {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}">Logout</a>
+      {% else %}
+        <a href="{% url 'signup' %}">Sign up</a>
+        <a href="{% url 'login' %}">Login</a>
+      {% endif %}
+    </div> -->
+
+    <section class="account">
+        <div class="auth-container">
+          <div class="auth-tabs">
+            <a href="#" class="auth-tab active">Вход</a>
+            <a href="#" class="auth-tab">Регистрация</a>
+        </div>
+            
+            <!-- Форма входа -->
+            <form method="post" class="auth-form form-content active" id="login-form">
+              <div class="form-group">
+                <label for="username">Имя пользователя или Email <span class="asterisk">*</span></label>
+                <input type="text" id="username" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="password">Пароль <span class="asterisk">*</span></label>
+                <input type="password" id="password" required>
+              </div>
+              
+              <button type="submit" class="submit-btn">войти</button>
+              
+              <div class="remember-row">
+                <div class="remember-me">
+                  <input type="checkbox" id="remember">
+                  <label for="remember">Запомнить меня</label>
+                </div>
+                <a href="#" class="forgot-password">Забыли свой пароль?</a>
+              </div>
+              
+              <div class="phone-login">
+                <a href="#">Войти по номеру телефона</a>
+              </div>
+            </form>
+            
+            <!-- Форма регистрации -->
+            <form method="post" class="auth-form form-content" id="register-form">
+              <div class="form-group">
+                <label for="reg-username">Имя пользователя <span class="asterisk">*</span></label>
+                <input type="text" id="reg-username" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="reg-email">Email <span class="asterisk">*</span></label>
+                <input type="email" id="reg-email" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="reg-password">Пароль <span class="asterisk">*</span></label>
+                <input type="password" id="reg-password" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="reg-confirm-password">Подтвердите пароль <span class="asterisk">*</span></label>
+                <input type="password" id="reg-confirm-password" required>
+              </div>
+              
+              <button type="submit" class="submit-btn">Зарегистрироваться</button>
+              
+              <div class="phone-login">
+                <a href="#">Зарегистрироваться по номеру телефона</a>
+              </div>
+            </form>
+    </section>
+
+    {% load static %}
+    <script src="{% static 'script/account.js' %}"></script>
+
+    {% include 'includes/footer.html' %}
+</body>
+</html>

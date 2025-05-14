@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/header.css'%}">
+    <title>Главная</title>
+</head>
+
+<header>
+  <div class="logo">
+    <a href="{% url 'index' %}">
+      {% load static %}
+      <img style="width: 40px; height: 40px;" src="https://shop.rea.ru/image/catalog/gerb_on_black.png" alt="">
+      <!-- <img style="width: 80px;" src="https://www.rea.ru/logo/rea-logo.svg" alt=""> -->
+    </a>
+  </div>
+  
+  <nav>
+    <ul class="main-menu">
+      <li><a href="{% url 'zenitsu_shop:list_card' %}">НОВИНКИ</a></li>
+          
+      <li class="mega-dropdown">
+        <a href="">КАТАЛОГ</a>
+        <div class="dropdown-mega">
+            <div class="mega-container">
+                {% for category in categories %}
+                    <div>
+                        <h3><a class="category-nav" href="{% url 'category_detail' category.slug %}" class="category">{{ category.name }}</a></h3>
+                    </div>
+                {% empty %}
+                    <div>
+                        <h3>Категории отсутствуют</h3>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+      </li>
+
+      <li><a href="{% url 'about' %}">О НАС</a></li>
+      <li><a href="{% url 'delivery' %}">ОПЛАТА И ДОСТАВКА</a></li>
+          
+      <li><a href="./blog.html">БЛОГ</a></li>
+    </ul>
+  </nav>
+
+  <div class="header_btn">
+    <div class="btn">
+      <a href="/accounts/login">
+        <button>
+          {% load static %}
+          <img src="{% static 'image/icon/free-icon-profile.png'%}" alt="">
+          </button>
+      </a>
+    </div>
+
+    <div class="btn">
+      <button class="search-trigger" id="searchTrigger">
+        {% load static %}
+        <img src="{% static 'image/icon/free-icon-search.png'%}" alt="Поиск">
+      </button>
+    </div>
+      
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+          <div class="search-input-container">
+              <input type="text" class="search-input" id="searchInput" 
+                     placeholder="Введите название товара..." autocomplete="off">
+              <button class="search-btn" id="searchBtn">Найти</button>
+              <button class="close-btn" id="closeBtn">×</button>
+          </div>
+          <div class="search-results" id="searchResults">
+            <div class="results-list">
+                <!-- Результаты будут вставляться сюда -->
+            </div>
+        </div>
+      </div>
+    </div>
+
+    {% load static %}
+    <script src="{% static 'script/search.js' %}"></script>
+    
+        <div class="btn">
+            <a href="/cart">
+                <button>
+                    {% load static %}
+                    <img src="{% static 'image/icon/free-icon-shopping-bag.png'%}" alt="">
+                </button>
+            </a>
+        </div>
+    </div>
+</header>
+
+
+{% load static %}
+<script src="{% static 'script/header.js' %}"></script>

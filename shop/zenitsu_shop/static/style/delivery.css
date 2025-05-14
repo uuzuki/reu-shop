@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+.container {
+    width: 80%;
+    margin: 100px auto;
+    padding: 20px;
+}
+
+.main-site {
+    padding: 100px 200px;
+}
+
+.main-site-nav a {
+    color: #000000;
+}
+
+.main-site-header {
+    display: flex;
+    flex-direction: column;
+}
+.main-site-nav {
+    display: flex;
+    justify-content: start;
+}
+
+.maun-site-nav a {
+    text-decoration: underline;
+}
+
+span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: rgb(21 9 0 / 50%);
+}
+.products-header h1 {
+    margin: 0;
+}
+
+h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 20px;
+}
+p {
+    font-size: 1em;
+    color: #666;
+    margin: 10px 0;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+li {
+    font-size: 1em;
+    color: #666;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+li img {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}

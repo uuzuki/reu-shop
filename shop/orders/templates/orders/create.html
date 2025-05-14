@@ -1,0 +1,86 @@
+<!-- orders/templates/orders/create.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/create.css' %}">
+    <title>Оформление заказа</title>
+</head>
+<body>
+    {% load static %}
+    {% include 'includes/header.html' %}
+
+    {% block content %}
+    <div class="checkout-container">
+        <h1 class="checkout-title">Корзина</h1>
+        <p class="cart-count">{{ cart|length }} товара в корзине</p>
+
+        <div class="order-info">
+            <h3>Ваш заказ</h3>
+            <ul class="cart-items">
+                {% for item in cart %}
+                    {% with product=item.product %}
+                    <li class="cart-item">
+                        <div class="col-md-2">
+                            <img src="{{ product.img_1 }}" alt="{{ product.name }}">
+                            <span class="item-name">{{ item.quantity }}x {{ product.name }} (Размер: {{ item.size.name }})</span>
+                        </div>
+                        <span class="item-price">{{ item.total_price }} ₽</span>
+                    </li>
+                    {% endwith %}
+                {% endfor %}
+            </ul>
+            <p class="cart-total">Итого: {{ cart.get_total_price }} ₽</p>
+        </div>
+
+        <div class="pay">
+            <form method="post" class="order-form">
+                {% csrf_token %}
+                <div class="personal-info">
+                    {% if form.errors %}
+                        <div class="error-messages">
+                            <p style="color: red;">Пожалуйста, исправьте следующие ошибки:</p>
+                            {{ form.errors }}
+                        </div>
+                    {% endif %}
+                    <p>{{ form.first_name.label_tag }} {{ form.first_name }}</p>
+                    <p>{{ form.last_name.label_tag }} {{ form.last_name }}</p>
+                    <p>{{ form.email.label_tag }} {{ form.email }}</p>
+                    <p>{{ form.phone.label_tag }} {{ form.phone }}</p>
+                    <p>{{ form.city.label_tag }} {{ form.city }}</p>
+                    <p>{{ form.street.label_tag }} {{ form.street }}</p>
+                    <p>{{ form.number_home.label_tag }} {{ form.number_home }}</p>
+                    <p>{{ form.payment.label_tag }} {{ form.payment }}</p>
+                </div>
+
+                <div class="delivery-section">
+                    <h2>Доставка</h2>
+                    <div class="notice-box">
+                        <strong>Внимание!</strong><br>
+                        Доставка заказа оплачивается при получении и носит справочный характер!
+                    </div>
+                    <div class="delivery-options">
+                        <h3>{{ form.delivery.label_tag }}</h3>
+                        {% for radio in form.delivery %}
+                            <div>
+                                {{ radio.tag }} <label for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+                            </div>
+                        {% endfor %}
+                        {% if form.delivery.errors %}
+                            <span style="color: red;">{{ form.delivery.errors }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="button">
+                    <p><input type="submit" value="Оформить заказ"></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+    {% include 'includes/footer.html' %}
+</body>
+</html>

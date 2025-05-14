@@ -1,0 +1,119 @@
+form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkout-container {
+    max-width: 800px;
+    margin: 40px auto;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #333;
+}
+
+.checkout-title {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.cart-count {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.order-info {
+    margin-bottom: 40px;
+}
+
+.order-info h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-top: 1px solid #e1e1e1;
+}
+
+.item-name {
+    font-weight: 500;
+}
+
+.item-price {
+    font-weight: 500;
+}
+
+.cart-total {
+    text-align: right;
+    padding: 20px 0;
+    border-top: 1px solid #e1e1e1;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.order-form {
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 4px;
+}
+
+.order-form p {
+    margin-bottom: 20px;
+    width: -webkit-calc(50% - 15px);
+    width: calc(50% - 15px);
+}
+
+.order-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.order-form input,
+.order-form textarea,
+.order-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.order-form input[type="submit"] {
+    background: #000;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+    font-weight: 500;
+}
+
+.order-form input[type="submit"]:hover {
+    background: #333;
+}
+
+.col-md-2 {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.col-md-2 img {
+    width: 100px;
+}

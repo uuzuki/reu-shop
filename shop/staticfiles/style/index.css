@@ -1,0 +1,339 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", sans-serif;
+}
+
+h3 {
+    margin: 0;
+}
+
+main {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('../image/reu-back');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    animation: moveBackground 30s linear infinite;
+}
+
+.hero-container {
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+    max-width: 1200px;
+    z-index: 2;
+}
+
+/* Анимация текста */
+.split-title, .split-subtitle {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.title-part {
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 1;
+    position: relative;
+    animation: fadeInUp 0.8s ease both;
+}
+
+.reu-spark {
+    color: #7ebbd0;
+    text-shadow: 0 0 10px rgba(101, 101, 100, 0.5);
+    position: relative;
+}
+
+.reu-spark::after {
+    content: '✨';
+    position: absolute;
+    right: -20px;
+    top: -10px;
+    font-size: 1.5rem;
+    animation: sparkle 2s infinite;
+}
+
+.subtitle-part {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    animation: fadeInUp 0.8s ease 0.3s both;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 30px auto;
+    line-height: 1.6;
+    animation: fadeIn 1s ease 0.6s both;
+    position: relative;
+}
+
+.hero-description::before,
+.hero-description::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 20px auto;
+}
+
+.university-logo img {
+    width: 150px;
+    opacity: 0.8;
+    animation: fadeIn 1s ease 0.8s both;
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes sparkle {
+    0% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .title-part {
+        font-size: 3rem;
+    }
+    .subtitle-part {
+        font-size: 1.5rem;
+    }
+    .hero-description {
+        font-size: 1rem;
+    }
+}
+
+.banners {
+    display: flex;
+}
+
+.banners img {
+    width: 100%;
+    height: auto;
+}
+
+/*--------CONTENT--------------------------------*/
+
+.content-slider-category-slider {
+    padding: 0 20px;
+}
+
+.content-slider-category-slider a {
+    color: rgba(0, 0, 0, 0.95);
+    text-decoration: none;
+    margin: 0;
+}
+
+.content-slider_header {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    text-transform: uppercase;
+}
+
+.content-slider-carousel-wrapper {
+    width: 100%;
+    max-width: 1500px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.slick-track {
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+.product-container {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.product-card {
+    min-width: calc(25% - 15px);
+    background: white;
+    border-radius: 8px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    /* padding: 20px; */
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.product-card img {
+    width: 346px;
+    height: 410px;
+    background: linear-gradient(135deg, #c7d1d3 0%, #e1e6e9 100%);
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.carousel-button {
+    background: #f3f3f2;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-button:hover {
+    background: #555;
+}
+
+.carousel-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.map {
+    margin: 100px 0;
+}
+
+iframe {
+    border-radius: 20px;
+    width: 1100px;
+}
+
+.map_cart {
+    display: flex;
+    justify-content: center;
+}
+
+.main-site {
+    padding: 100px 200px;
+}
+
+.main-site-header {
+    display: flex;
+    flex-direction: column;
+}
+.main-site-nav {
+    display: flex;
+    justify-content: start;
+}
+
+.maun-site-nav a {
+    text-decoration: underline;
+}
+
+span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: rgb(21 9 0 / 50%);
+}
+.products-header h1 {
+    margin: 0;
+}
+
+.full-row-pleh {
+    display: flex;
+    width: 100%;
+    margin-top: 100px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.left-image.col-sm-7 {
+    background: url(https://shop.rea.ru/image/catalog/academy.jpg);
+    width: 50%;
+    height: 510px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.right-descs.col-sm-5 {
+    width: 50%;
+    background: #0b2d4f;
+    color: #fff;
+    position: relative;
+}
+
+.pleh-left-btm img {
+    width: 45px;
+    margin: 30px 0;
+}
+
+.full-row-pleh .right-descs .pleh-left-btm {
+    float: left;
+    width: 20%;
+    text-align: center;
+    margin-left: 10%;
+}
+
+.pleh-title {
+    position: absolute;
+    left: 35%;
+    top: 40%;
+    font-size: 1.3em;
+    line-height: 1.5em;
+}
+
+.full-row-pleh .right-descs .pleh-left-btm .hr-vert {
+    width: 1px;
+    background: #fff;
+    margin: 0 auto;
+    height: 200px;
+}
+
+.full-row-pleh .right-descs .pleh-under-title {
+    position: absolute;
+    bottom: 30px;
+    left: 25%;
+    right: 0;
+}
+
+.full-row-pleh .right-descs .pleh-under-title .globus {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.full-row-pleh .right-descs .pleh-under-title img {
+    vertical-align: middle;
+}
+.full-row-pleh .right-descs .pleh-under-title a {
+    color: #fff;
+}
+
+.full-row-pleh .right-descs .pleh-under-title .arrow_next {
+    width: 25px;
+    margin-left: 100px;
+}

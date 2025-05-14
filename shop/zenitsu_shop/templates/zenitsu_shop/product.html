@@ -1,0 +1,118 @@
+<!-- zenitsu_shop/templates/zenitsu_shop/product.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/product.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>{{ product.name }}</title>
+</head>
+<body>
+    {% include 'includes/header.html' %}
+
+    <main class="main-site">
+        {% block content %}
+        <div class="product-container">
+            <div class="product-container-top">
+                <div class="product-gallery">
+                    <div class="product-image">
+                        <div class="main-image">
+                            {% if product.img_1 %}
+                            <img id="mainImage" src="{{ product.img_1 }}" alt="{{ product.name }}">
+                            {% endif %}
+                        </div>
+                        <div class="thumbnails">
+                            {% if product.img_1 %}
+                                <img src="{{ product.img_1 }}" alt="{{ product.name }} вид 1" 
+                                    onclick="changeImage('{{ product.img_1 }}', this)">
+                            {% endif %}
+                            {% if product.img_2 %}
+                                <img src="{{ product.img_2 }}" alt="{{ product.name }} вид 2" 
+                                    onclick="changeImage('{{ product.img_2 }}', this)">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <h1 class="product-title">{{ product.name }}</h1>
+                    <div class="product-price">{{ product.price|floatformat:"0" }} ₽</div>
+
+                    <!-- Форма для выбора размера и добавления в корзину -->
+                    <form class="buy" action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="size-selector">
+                            <div class="size-title">SIZE</div>
+                            <div class="size-options">
+                                {% for size in cart_product_form.fields.size.queryset %}
+                                    <div class="size-option {% if cart_product_form.initial.size == size %}selected{% endif %}" 
+                                         data-value="{{ size.id }}">
+                                        {{ size.name }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="quantity-selector">
+                            <label for="id_quantity">Количество:</label>
+                            {{ cart_product_form.quantity }}
+                        </div>
+
+                        <div class="product-quantity">
+                            {% for product_size in product.productsizes.all %}
+                                <p>{{ product_size.size.name }}: {{ product_size.quantity }} в наличии</p>
+                            {% endfor %}
+                        </div>
+
+                        <div class="product-description">
+                            <h2>Описание</h2>
+                            <p>{{ product.description|linebreaks }}</p>                
+                        </div>
+
+                        <input type="hidden" name="size" id="selected-size" value="{{ cart_product_form.initial.size.id }}">
+                        {{ cart_product_form.update }}
+                        <button class="buy" type="submit">Добавить в корзину</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="product-container-bottom">
+                <div class="random-products">
+                    <h2>Вам также может понравиться</h2>
+                    <div class="random-products-grid">
+                        {% for random_product in random_products %}
+                            <div class="random-product-item">
+                                <a href="{% url 'product' random_product.id %}">
+                                    <img src="{{ random_product.img_1 }}" alt="{{ random_product.name }}">
+                                    <h3>{{ random_product.name }}</h3>
+                                    <p>{{ random_product.price|floatformat:"0" }} ₽</p>
+                                </a>
+                            </div>
+                        {% empty %}
+                            <p>Нет доступных товаров для отображения.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </main>
+
+    {% load static %}
+    <script src="{% static 'script/product.js' %}"></script>
+    <script>
+        document.querySelectorAll('.size-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                document.getElementById('selected-size').value = this.getAttribute('data-value');
+            });
+        });
+    </script>
+
+    {% include 'includes/footer.html' %}
+</body>
+</html>

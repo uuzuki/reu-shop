@@ -1,0 +1,110 @@
+<!-- cart/templates/cart/detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/basket.css' %}">
+</head>
+<body>
+    {% include 'includes/header.html' %}
+
+    <main class="main-site">
+        <nav class="main-site-nav">
+            <span>
+                <a href="{% url 'zenitsu_shop:index' %}">Главная</a>
+                <p>→ Корзина</p>
+            </span>
+        </nav>
+
+        <div class="products-header">
+            <h1>КОРЗИНА</h1>
+        </div>
+    </main>
+
+    <section class="cart-container py-5">
+        <div class="container">
+            {% if cart %}
+                <p class="h4 mb-4"><span class="text-dark">Корзина</span> <span class="text-muted">({{ cart|length }} товара в корзине)</span></p>
+
+                <div class="cart-card mb-4">
+                    <div class="card-body p-4">
+                        {% for item in cart %}
+                            {% with product=item.product %}
+                            <div class="row align-items-center mb-4 pb-4 border-bottom">
+                                <div class="col-md-2">
+                                    <a href="">
+                                        <img src="{{ product.img_1 }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="col-md-2">
+                                        <p class="product-name mb-0">{{ product.name }} (Размер: {{ item.size.name }})</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="col-md-2">
+                                            <p class="section-label mb-1">Количество</p>
+                                            <!-- Форма для изменения количества -->
+                                            <form action="{% url 'cart:cart_update' product.id item.size.id %}" method="post">
+                                                {% csrf_token %}
+                                                <select name="quantity" onchange="this.form.submit()">
+                                                    {% for i in "12345678910" %}
+                                                        <option value="{{ i }}" {% if item.quantity == i|add:"0" %}selected{% endif %}>{{ i }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <p class="section-label mb-1">Цена</p>
+                                            <p class="product-price mb-0">{{ item.price }} ₽</p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <p class="section-label mb-1">Итог</p>
+                                            <p class="product-price mb-0">{{ item.total_price }} ₽</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 text-center">
+                                        <button class="remove">
+                                            <a href="{% url 'cart:cart_remove' product.id item.size.id %}" class="remove-link">Удалить</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endwith %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <div class="cart-summary text-right">
+                        <h5 class="mb-3">Информация о заказе</h5>
+                        <p class="d-flex justify-content-between mb-2"><span>Итог корзины:</span> <span>{{ cart.get_total_price }} ₽</span></p>
+                        <p class="d-flex justify-content-between mb-3"><span>Доставка:</span> <span>Free</span></p>
+                        <hr>
+                        <h5 class="d-flex justify-content-between"><span>Итог:</span> <span>{{ cart.get_total_price }} ₽</span></h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a href="/list-card.html" class="btn btn-outline-dark">Продолжить покупки</a>
+                <a href="{% url 'orders:order_create' %}" id="color" class="btn btn-checkout text-white">Перейти к оформлению</a>
+            </div>
+        {% else %}
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart fa-4x mb-4" style="color: #e9ecef;"></i>
+                <h3 class="mb-3">Ваша корзина пуста</h3>
+                <p class="text-muted mb-4">Пусто</p>
+                <a href="/list-card.html" class="btn btn-dark">Начать покупки</a>
+            </div>
+        {% endif %}
+        </section>
+
+    {% include 'includes/footer.html' %}
+</body>
+</html>

@@ -1,0 +1,47 @@
+
+{% block content %}
+<div class="container">
+    <h2>Ваша корзина</h2>
+    {% if cart %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Изображение</th>
+                <th>Товар</th>
+                <th>Количество</th>
+                <th>Цена</th>
+                <th>Сумма</th>
+                <th>Удалить</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart %}
+            <tr>
+                <td>
+                    <img src="{{ item.product.image.url }}" width="50">
+                </td>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.price }} ₽</td>
+                <td>{{ item.total_price }} ₽</td>
+                <td>
+                    <a href="{% url 'zenitsu_shop:cart_remove' item.id %}" class="btn btn-danger">
+                        ×
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">Итого:</td>
+                <td>{{ cart.get_total_price }} ₽</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+    {% else %}
+    <p>Ваша корзина пуста</p>
+    {% endif %}
+</div>
+{% endblock %}

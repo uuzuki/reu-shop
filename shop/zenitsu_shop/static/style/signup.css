@@ -1,0 +1,195 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", sans-serif;
+}
+
+a {
+    color: rgb(21 9 0 / 95%);
+    margin: 0;
+}
+/*---------MAIN---------------*/
+
+.main-site {
+    padding: 100px 200px 50px;
+}
+
+.main-site-header {
+    display: flex;
+    flex-direction: column;
+}
+.main-site-nav {
+    display: flex;
+    justify-content: start;
+}
+
+.maun-site-nav a {
+    text-decoration: underline;
+}
+
+span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: rgb(21 9 0 / 50%);
+}
+.products-header h1 {
+    margin: 0;
+}
+/* -------------------------------------- */
+
+/* Основные стили формы */
+.auth-form {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Стили вкладок */
+.auth-tabs {
+    display: flex;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.auth-tab {
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    color: #666;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.auth-tab.active {
+    color: #2563eb;
+    border-bottom: 2px solid #2563eb;
+}
+
+/* Стили полей ввода */
+
+form {
+    width: 50%;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #2563eb;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-hint {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Стили кнопки */
+.auth-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.auth-button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Нижний колонтитул формы */
+.auth-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.auth-footer a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    .auth-form {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .auth-tab {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/*-------------FOOTER---------------------------*/
+
+footer.site-footer {
+    clear: both;
+    background: rgba(0, 0, 0, .95);
+    color: #f3f3f2;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.menu-footer-navigation-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.site-footer a {
+    font-weight: 300;
+    font-size: 12px;
+}
+.footer-menu {
+    display: flex;
+}
+
+.menu-item {
+    margin: 0 15px;
+}
+
+li {
+    margin: 10px 0; /* Отступ между элементами */
+}
+
+ul.footer-menu {
+    list-style-type: none;
+  padding-left: 0;
+}
+
+ul.sub-menu {
+    list-style-type: none;
+  padding-left: 0;
+}
+
+footer.site-footer a {
+    color: #f3f3f2;
+}
